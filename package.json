@@ -1,0 +1,18 @@
+{
+  "name": "personal-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "authors": [
+    "Aaron Massey"
+  ],
+  "scripts": {
+    "start-server-dev": "npm run start-dev --prefix server",
+    "start": "npm run start --prefix server",
+    "start-client-dev": "npm run start --prefix client",
+    "dev": "npm-run-all -p start-server-dev start-client-dev"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.3"
+  }
+}
