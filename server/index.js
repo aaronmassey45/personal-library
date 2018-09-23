@@ -95,5 +95,13 @@ app.delete('/api/books/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/books', async (req, res) => {
+  try {
+    await Book.deleteMany({});
+    res.send('complete delete successful');
+  } catch (error) {
+    res.send({ error });
+  }
+});
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.info(`Server listening on port ${PORT}.`));
