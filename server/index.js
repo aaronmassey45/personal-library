@@ -79,5 +79,21 @@ app.post('/api/books/:id', async (req, res) => {
   }
 });
 
+app.delete('/api/books/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) throw 'invalid id';
+
+    const result = await Book.findByIdAndDelete(id);
+
+    if (!result) throw 'no book with that id';
+
+    res.send('delete successful');
+  } catch (error) {
+    res.send({ error });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.info(`Server listening on port ${PORT}.`));
