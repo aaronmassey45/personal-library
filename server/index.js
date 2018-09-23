@@ -51,7 +51,7 @@ app.get('/api/books/:id', async (req, res) => {
 
     const book = await Book.findById(id).select('-commentcount');
 
-    if (!book) throw 'no book with that id';
+    if (!book) throw 'no book exists';
 
     res.send(book);
   } catch (error) {
@@ -71,7 +71,7 @@ app.post('/api/books/:id', async (req, res) => {
       { new: true }
     ).select('-commentcount');
 
-    if (!book) throw 'no book with that id';
+    if (!book) throw 'no book exists';
 
     res.send(book);
   } catch (error) {
@@ -87,7 +87,7 @@ app.delete('/api/books/:id', async (req, res) => {
 
     const result = await Book.findByIdAndDelete(id);
 
-    if (!result) throw 'no book with that id';
+    if (!result) throw 'no book exists';
 
     res.send('delete successful');
   } catch (error) {
