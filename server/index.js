@@ -59,5 +59,25 @@ app.get('/api/books/:id', async (req, res) => {
   }
 });
 
+app.post('/api/books/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) throw 'invalid id';
+
+    const book = await Book.findByIdAndUpdate(
+      id,
+      { $push: { comments: req.body.comment } },
+      { new: true }
+    ).select('-commentcount');
+
+    if (!book) throw 'no book found';
+
+    res.send(book);
+  } catch (error) {
+    res.send({ error });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.info(`Server listening on port ${PORT}.`));
