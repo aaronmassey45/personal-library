@@ -51,7 +51,7 @@ app.get('/api/books/:id', async (req, res) => {
 
     const book = await Book.findById(id).select('-commentcount');
 
-    if (!book) throw 'no book found';
+    if (!book) throw 'no book with that id';
 
     res.send(book);
   } catch (error) {
@@ -71,7 +71,7 @@ app.post('/api/books/:id', async (req, res) => {
       { new: true }
     ).select('-commentcount');
 
-    if (!book) throw 'no book found';
+    if (!book) throw 'no book with that id';
 
     res.send(book);
   } catch (error) {
