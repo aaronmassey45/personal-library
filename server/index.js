@@ -34,5 +34,14 @@ app.post('/api/books', async (req, res) => {
   }
 });
 
+app.get('/api/books', async (req, res) => {
+  try {
+    const books = await Book.find({}).select('-comments');
+    res.send(books);
+  } catch (error) {
+    res.send({ error });
+  }
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.info(`Server listening on port ${PORT}.`));
