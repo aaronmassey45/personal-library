@@ -15,7 +15,6 @@ const { books, populateBooks } = require('./seed-data');
 chai.use(chaiHttp);
 
 describe('Functional Tests', function() {
-  this.timeout(10000);
   beforeEach(populateBooks);
   describe('example GET /api/books', function() {
     /*
@@ -169,31 +168,38 @@ describe('Functional Tests', function() {
       });
     });
 
-    // describe('POST /api/books/:id', function() {
-    //   it('should add comment and return book object', function(done) {
-    //     const comment = 'Totally tubular';
-    //     chai
-    //       .request(server)
-    //       .post('/api/books/' + books[1]._id)
-    //       .send({ comment })
-    //       .end(function(err, res) {
-    //         console.log(res.body);
-    //         assert.equal(res.status, 200);
-    //         assert.isObject(res.body, 'response should be an object');
-    //         assert.property(res.body, 'title', 'Book should contain title');
-    //         assert.property(res.body, '_id', 'Book should contain _id');
-    //         assert.property(
-    //           res.body,
-    //           'comments',
-    //           'Book should contain an array of comments'
-    //         );
-    //         assert.isArray(res.body.comments, 'comments should be an array');
-    //         assert.equal(res.body._id, books[1]._id);
-    //         assert.equal(res.body.title, books[1].title);
-    //         // assert.equal(res.body.comments[-1], comment);
-    //       });
-    //     done();
-    //   });
-    // });
+    describe('POST /api/books/:id', function() {
+      it('should add comment and return book object', function(done) {
+        const comment = 'Totally tubular';
+        chai
+          .request(server)
+          .post('/api/books/' + books[1]._id)
+          .send({ comment })
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.isObject(res.body, 'response should be an object');
+            assert.property(res.body, 'title', 'Book should contain title');
+            assert.property(res.body, '_id', 'Book should contain _id');
+            assert.property(
+              res.body,
+              'comments',
+              'Book should contain an array of comments'
+            );
+            assert.isArray(res.body.comments, 'comments should be an array');
+            assert.equal(res.body._id, books[1]._id, 'ids are not equal');
+            assert.equal(
+              res.body.title,
+              books[1].title,
+              'titles are not equal'
+            );
+            assert.deepEqual(
+              res.body.comments,
+              [...books[1].comments, comment],
+              'arrays do not have same comments'
+            );
+            done();
+          });
+      });
+    });
   });
 });
