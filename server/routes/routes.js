@@ -15,7 +15,7 @@ module.exports = app => {
       await book.save();
       res.send({ title: book.title, _id: book._id });
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 
@@ -24,7 +24,7 @@ module.exports = app => {
       const books = await Book.find({}).select('-comments');
       res.send(books);
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 
@@ -40,7 +40,7 @@ module.exports = app => {
 
       res.send(book);
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 
@@ -60,7 +60,7 @@ module.exports = app => {
 
       res.send(book);
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 
@@ -76,7 +76,7 @@ module.exports = app => {
 
       res.send('delete successful');
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 
@@ -85,7 +85,7 @@ module.exports = app => {
       await Book.deleteMany({});
       res.send('complete delete successful');
     } catch (error) {
-      res.send({ error });
+      res.status(400).send({ error });
     }
   });
 };
