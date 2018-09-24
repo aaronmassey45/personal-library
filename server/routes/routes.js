@@ -7,7 +7,11 @@ const Book = mongoose.model('book');
 module.exports = app => {
   app.post('/api/books', async (req, res) => {
     try {
-      const book = new Book({ title: req.body.title });
+      const { title } = req.body;
+
+      if (!title) throw 'no title was provided';
+
+      const book = new Book({ title });
       await book.save();
       res.send({ title: book.title, _id: book._id });
     } catch (error) {
