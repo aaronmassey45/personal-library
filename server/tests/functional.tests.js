@@ -10,7 +10,7 @@ const chaiHttp = require('chai-http');
 const chai = require('chai');
 const assert = chai.assert;
 const server = require('../index');
-const { populateBooks } = require('./seed-data');
+const { books, populateBooks } = require('./seed-data');
 
 chai.use(chaiHttp);
 
@@ -124,15 +124,42 @@ describe('Functional Tests', function() {
       });
     });
 
-    // describe('GET /api/books/[id] => book object with [id]', function() {
-    //   it('Test GET /api/books/[id] with id not in db', function(done) {
-    //     //done();
-    //   });
+    describe('GET /api/books/:id', function() {
+      it('should not return book if provided with id not in db', function(done) {
+        chai
+          .request(server)
+          .get('/api/books/123')
+          .end(function(err, res) {
+            assert.equal(res.status, 400);
+            assert.isObject(res.body, 'response should be an object');
+            assert.property(res.body, 'error', 'This should cause an error');
+            assert.equal(res.body.error, 'invalid id');
+          });
+        done();
+      });
 
-    //   it('Test GET /api/books/[id] with valid id in db', function(done) {
-    //     //done();
-    //   });
-    // });
+      it('should return book if provided with valid id in db', function(done) {
+        chai
+          .request(server)
+          .get(`/api/books/${books[0]._id}`)
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.isObject(res.body, 'response should be an object');
+            assert.property(res.body, 'title', 'Book should contain title');
+            assert.property(res.body, '_id', 'Book should contain _id');
+            assert.property(
+              res.body,
+              'comments',
+              'Book should contain an array of comments'
+            );
+            assert.isArray(res.body.comments, 'comments should be an array');
+            assert.equal(res.body._id, book[0]._id);
+            assert.equal(res.body.title, book[0].title);
+            assert.equal(res.body.comments, book[0].comments);
+          });
+        done();
+      });
+    });
 
     // describe('POST /api/books/[id] => add comment/expect book object with id', function() {
     //   it('Test POST /api/books/[id] with comment', function(done) {
