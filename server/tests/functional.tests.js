@@ -62,6 +62,7 @@ describe('Functional Tests', function() {
           .post('/api/books')
           .send({ title })
           .end(function(err, res) {
+            assert.equal(res.status, 200);
             assert.property(
               res.body,
               '_id',
@@ -87,6 +88,7 @@ describe('Functional Tests', function() {
           .post('/api/books')
           .send({})
           .end(function(err, res) {
+            assert.equal(res.status, 400);
             assert.property(res.body, 'error', 'This should cause an error');
             assert.equal(res.body.error, 'no title was provided');
           });
