@@ -48,7 +48,7 @@ module.exports = app => {
 
       const book = await Book.findByIdAndUpdate(
         id,
-        { $push: { comments: req.body.comment } },
+        { $push: { comments: req.body.comment }, $inc: { commentcount: 1 } },
         { new: true }
       ).select('-commentcount');
 
