@@ -96,11 +96,33 @@ describe('Functional Tests', function() {
       });
     });
 
-    // describe('GET /api/books => array of books', function() {
-    //   it('Test GET /api/books', function(done) {
-    //     //done();
-    //   });
-    // });
+    describe('GET /api/books', function() {
+      it('should receive array of books', function(done) {
+        chai
+          .request(server)
+          .get('/api/books')
+          .end(function(err, res) {
+            assert.equal(res.status, 200);
+            assert.isArray(res.body, 'response should be an array');
+            assert.property(
+              res.body[0],
+              'commentcount',
+              'Books in array should contain commentcount'
+            );
+            assert.property(
+              res.body[0],
+              'title',
+              'Books in array should contain title'
+            );
+            assert.property(
+              res.body[0],
+              '_id',
+              'Books in array should contain _id'
+            );
+            done();
+          });
+      });
+    });
 
     // describe('GET /api/books/[id] => book object with [id]', function() {
     //   it('Test GET /api/books/[id] with id not in db', function(done) {
