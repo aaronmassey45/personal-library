@@ -38,6 +38,15 @@ export const getBooks = async dispatch => {
   }
 };
 
+export const addComment = async (dispatch, comment, id) => {
+  try {
+    const res = await axios.post(`/api/books/${id}`, { comment });
+    return dispatch({ type: 'SELECT_BOOK', payload: res.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export class Provider extends Component {
   state = {
     books: [],
