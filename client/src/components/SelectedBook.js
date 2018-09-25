@@ -2,7 +2,7 @@ import React from 'react';
 
 import AddComment from './AddComment';
 
-export default ({ selectedBook, dispatch }) => (
+export default ({ selectedBook }) => (
   <div className="col s12 m6">
     <div className="card blue-grey darken-1">
       <div className="card-content white-text">
