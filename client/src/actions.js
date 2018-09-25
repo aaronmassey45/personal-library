@@ -26,3 +26,12 @@ export const addComment = async (dispatch, comment, id) => {
     console.log(error);
   }
 };
+
+export const deleteAllBooks = async dispatch => {
+  try {
+    await axios.delete('/api/books');
+    return dispatch({ type: 'DELETE_ALL_BOOKS' });
+  } catch (error) {
+    console.log(error);
+  }
+};
