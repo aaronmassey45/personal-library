@@ -8,28 +8,6 @@ export default () => {
           Personal Library
         </span>
       </div>
-      <div className="nav-content">
-        <ul className="tabs tabs-transparent">
-          <li className="tab hoverable">
-            <a
-              href="https://aaronmassey.pro/projects"
-              className="grey-text text-darken-4"
-            >
-              Portfolio
-            </a>
-          </li>
-          <li className="tab hoverable">
-            <a
-              href="https://github.com/aaronmassey45/personal-library"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="grey-text text-darken-4"
-            >
-              Github
-            </a>
-          </li>
-        </ul>
-      </div>
     </nav>
   );
 };
