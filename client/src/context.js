@@ -29,21 +29,24 @@ export const selectBook = async (dispatch, id) => {
   }
 };
 
+export const getBooks = async dispatch => {
+  try {
+    const res = await axios.get('/api/books');
+    return dispatch({ type: 'GET_BOOKS', payload: res.data });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export class Provider extends Component {
   state = {
     books: [],
     selectedBook: null,
-    getBooks: () => {
-      axios
-        .get('/api/books')
-        .then(({ data }) => this.setState({ books: data }))
-        .catch(err => console.log(err));
-    },
     dispatch: action => this.setState(state => reducer(state, action)),
   };
 
   componentDidMount = () => {
-    this.state.getBooks();
+    getBooks(this.state.dispatch);
   };
 
   render() {
