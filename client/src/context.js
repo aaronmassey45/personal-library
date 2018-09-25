@@ -16,6 +16,12 @@ const reducer = (state, action) => {
         ...state,
         selectedBook: action.payload,
       };
+    case 'DELETE_ALL_BOOKS':
+      return {
+        ...state,
+        books: [],
+        selectedBook: null,
+      };
     default:
       return state;
   }
