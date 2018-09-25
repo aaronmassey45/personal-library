@@ -9,6 +9,7 @@ const AllBooks = ({ values: { books } }) => (
     {books.map(book => (
       <li key={book._id} className="collection-item">
         {book.title}
+        <span className="right">{book.commentcount} comments</span>
       </li>
     ))}
   </ul>
