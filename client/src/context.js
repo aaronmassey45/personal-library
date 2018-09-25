@@ -22,6 +22,12 @@ const reducer = (state, action) => {
         books: [],
         selectedBook: null,
       };
+    case 'DELETE_BOOK':
+      getBooks(state.dispatch);
+      return {
+        ...state,
+        selectedBook: null,
+      };
     default:
       return state;
   }
