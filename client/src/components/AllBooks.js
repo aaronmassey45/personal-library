@@ -1,10 +1,10 @@
 import React from 'react';
 import AddNewBook from './AddNewBook';
 
-const AllBooks = ({ values: { books, getBooks } }) => (
+const AllBooks = ({ values: { books } }) => (
   <ul className="collection with-header">
     <li className="collection-header">
-      <AddNewBook getBooks={getBooks} />
+      <AddNewBook />
     </li>
     {books.map(book => (
       <li key={book._id} className="collection-item">
