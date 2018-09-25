@@ -1,13 +1,9 @@
 import React from 'react';
-import axios from 'axios';
+
 import AddNewBook from './AddNewBook';
+import { selectBook } from '../context';
 
 const AllBooks = ({ values: { books, dispatch } }) => {
-  const selectBook = async id => {
-    const res = await axios.get(`/api/books/${id}`);
-    dispatch({ type: 'SELECT_BOOK', payload: res.data });
-  };
-
   return (
     <div className="col s12 m6">
       <ul className="collection with-header">
@@ -18,7 +14,7 @@ const AllBooks = ({ values: { books, dispatch } }) => {
           <li
             key={book._id}
             className="collection-item"
-            onClick={() => selectBook(book._id)}
+            onClick={() => selectBook(dispatch, book._id)}
           >
             {book.title}
             <span className="right">{book.commentcount} comments</span>
