@@ -10,6 +10,11 @@ const reducer = (state, action) => {
         ...state,
         books: action.payload,
       };
+    case 'SELECT_BOOK':
+      return {
+        ...state,
+        selectedBook: action.payload,
+      };
     default:
       return state;
   }
@@ -18,6 +23,7 @@ const reducer = (state, action) => {
 export class Provider extends Component {
   state = {
     books: [],
+    selectedBook: null,
     getBooks: () => {
       axios
         .get('/api/books')
