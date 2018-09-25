@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+
+import { getBooks } from './actions';
 
 const Context = React.createContext();
 
@@ -17,33 +18,6 @@ const reducer = (state, action) => {
       };
     default:
       return state;
-  }
-};
-
-export const selectBook = async (dispatch, id) => {
-  try {
-    const res = await axios.get(`/api/books/${id}`);
-    return dispatch({ type: 'SELECT_BOOK', payload: res.data });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getBooks = async dispatch => {
-  try {
-    const res = await axios.get('/api/books');
-    return dispatch({ type: 'GET_BOOKS', payload: res.data });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const addComment = async (dispatch, comment, id) => {
-  try {
-    const res = await axios.post(`/api/books/${id}`, { comment });
-    return dispatch({ type: 'SELECT_BOOK', payload: res.data });
-  } catch (error) {
-    console.log(error);
   }
 };
 
