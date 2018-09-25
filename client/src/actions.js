@@ -35,3 +35,12 @@ export const deleteAllBooks = async dispatch => {
     console.log(error);
   }
 };
+
+export const deleteBook = async (dispatch, id) => {
+  try {
+    await axios.delete(`/api/books/${id}`);
+    return dispatch({ type: 'DELETE_BOOK' });
+  } catch (error) {
+    console.log(error);
+  }
+};
