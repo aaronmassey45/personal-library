@@ -18,14 +18,17 @@ const reducer = (state, action) => {
 export class Provider extends Component {
   state = {
     books: [],
+    getBooks: () => {
+      axios
+        .get('/api/books')
+        .then(({ data }) => this.setState({ books: data }))
+        .catch(err => console.log(err));
+    },
     dispatch: action => this.setState(state => reducer(state, action)),
   };
 
   componentDidMount = () => {
-    axios
-      .get('/api/books')
-      .then(({ data }) => this.setState({ books: data }))
-      .catch(err => console.log(err));
+    this.state.getBooks();
   };
 
   render() {
