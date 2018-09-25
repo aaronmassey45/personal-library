@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import withGetBooks from '../HOC/withGetBooks';
-import { Consumer, selectBook } from '../context';
+import { Consumer, getBooks, addComment } from '../context';
 
-class AddComment extends Component {
+export default class AddComment extends Component {
   state = {
     comment: '',
   };
@@ -15,13 +14,10 @@ class AddComment extends Component {
 
   handleSubmit = async (e, dispatch) => {
     e.preventDefault();
-    const { id, getBooks } = this.props;
+    const { id } = this.props;
     try {
-      await axios.post(`/api/books/${id}`, {
-        comment: this.state.comment,
-      });
-      selectBook(dispatch, id);
-      getBooks();
+      addComment(dispatch, this.state.comment, id);
+      getBooks(dispatch);
       this.setState({ comment: '' });
     } catch (error) {
       console.log(error);
@@ -51,5 +47,3 @@ class AddComment extends Component {
     );
   }
 }
-
-export default withGetBooks(AddComment);
