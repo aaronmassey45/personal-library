@@ -1,6 +1,8 @@
 import React from 'react';
 
 import AddNewBook from './AddNewBook';
+import DeleteAllButton from './DeleteAllButton';
+
 import { selectBook } from '../actions';
 
 const AllBooks = ({ values: { books, dispatch } }) => {
@@ -8,6 +10,7 @@ const AllBooks = ({ values: { books, dispatch } }) => {
     <div className="col s12 m6">
       <ul className="collection with-header">
         <li className="collection-header">
+          <DeleteAllButton />
           <AddNewBook />
         </li>
         {books.map(book => (
