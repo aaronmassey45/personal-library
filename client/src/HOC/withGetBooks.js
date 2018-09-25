@@ -7,7 +7,9 @@ const withGetBooks = WrappededComponent => {
     render() {
       return (
         <Consumer>
-          {({ getBooks }) => <WrappededComponent getBooks={getBooks} />}
+          {({ getBooks }) => (
+            <WrappededComponent getBooks={getBooks} {...this.props} />
+          )}
         </Consumer>
       );
     }
