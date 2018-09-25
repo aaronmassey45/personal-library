@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import mapDispatchToProps from '../HOC/mapDispatchToProps';
-import { getBooks } from '../context';
+import { getBooks } from '../actions';
 
 class AddNewBook extends Component {
   state = {

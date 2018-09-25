@@ -1,7 +1,7 @@
 import React from 'react';
 
 import AddNewBook from './AddNewBook';
-import { selectBook } from '../context';
+import { selectBook } from '../actions';
 
 const AllBooks = ({ values: { books, dispatch } }) => {
   return (

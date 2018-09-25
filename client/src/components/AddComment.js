@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getBooks, addComment } from '../context';
+import { getBooks, addComment } from '../actions';
 import mapDispatchToProps from '../HOC/mapDispatchToProps';
 
 class AddComment extends Component {
