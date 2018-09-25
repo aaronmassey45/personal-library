@@ -2,3 +2,7 @@
   margin: 0;
   padding: 0;
 }
+
+nav div ul li a:hover {
+  background-color: #ffc107 !important;
+}
