@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-import { Consumer, getBooks, addComment } from '../context';
+import { getBooks, addComment } from '../context';
+import mapDispatchToProps from '../HOC/mapDispatchToProps';
 
-export default class AddComment extends Component {
+class AddComment extends Component {
   state = {
     comment: '',
   };
@@ -11,9 +12,9 @@ export default class AddComment extends Component {
     this.setState({ comment: e.target.value });
   };
 
-  handleSubmit = async (e, dispatch) => {
+  handleSubmit = async e => {
     e.preventDefault();
-    const { id } = this.props;
+    const { id, dispatch } = this.props;
     try {
       addComment(dispatch, this.state.comment, id);
       getBooks(dispatch);
@@ -25,24 +26,22 @@ export default class AddComment extends Component {
 
   render() {
     return (
-      <Consumer>
-        {({ dispatch }) => (
-          <div className="card-action">
-            <form onSubmit={e => this.handleSubmit(e, dispatch)}>
-              <input
-                name="title"
-                onChange={this.handleChange}
-                placeholder="Add a comment..."
-                type="text"
-                value={this.state.comment}
-              />
-              <button type="submit" className="btn waves-effect waves-light">
-                Add Comment
-              </button>
-            </form>
-          </div>
-        )}
-      </Consumer>
+      <div className="card-action">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            name="title"
+            onChange={this.handleChange}
+            placeholder="Add a comment..."
+            type="text"
+            value={this.state.comment}
+          />
+          <button type="submit" className="btn waves-effect waves-light">
+            Add Comment
+          </button>
+        </form>
+      </div>
     );
   }
 }
+
+export default mapDispatchToProps(AddComment);
