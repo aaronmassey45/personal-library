@@ -11,6 +11,10 @@ body {
   cursor: pointer;
 }
 
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
 nav div ul li a:hover {
   background-color: #ffc107 !important;
 }
