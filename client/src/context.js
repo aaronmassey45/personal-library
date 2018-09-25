@@ -20,6 +20,11 @@ const reducer = (state, action) => {
   }
 };
 
+export const selectBook = async (dispatch, id) => {
+  const res = await axios.get(`/api/books/${id}`);
+  return dispatch({ type: 'SELECT_BOOK', payload: res.data });
+};
+
 export class Provider extends Component {
   state = {
     books: [],
