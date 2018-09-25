@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 
 import AllBooks from './components/AllBooks';
+import Navbar from './components/Navbar';
 import { Consumer } from './context';
 
 class App extends Component {
@@ -9,9 +10,12 @@ class App extends Component {
     return (
       <Consumer>
         {values => (
-          <div className="container">
-            <AllBooks values={values} />
-          </div>
+          <main>
+            <Navbar />
+            <div className="container">
+              <AllBooks values={values} />
+            </div>
+          </main>
         )}
       </Consumer>
     );
