@@ -3,6 +3,10 @@
   padding: 0;
 }
 
+body {
+  background-color: #424242;
+}
+
 nav div ul li a:hover {
   background-color: #ffc107 !important;
 }
