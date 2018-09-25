@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import withGetBooks from '../HOC/withGetBooks';
+import mapDispatchToProps from '../HOC/mapDispatchToProps';
+import { getBooks } from '../context';
 
 class AddNewBook extends Component {
   state = {
@@ -16,7 +17,7 @@ class AddNewBook extends Component {
     e.preventDefault();
     try {
       await axios.post('/api/books', { title: this.state.title });
-      this.props.getBooks();
+      getBooks(this.props.dispatch);
       this.setState({ title: '' });
     } catch (error) {
       console.log(error);
@@ -45,4 +46,4 @@ class AddNewBook extends Component {
   }
 }
 
-export default withGetBooks(AddNewBook);
+export default mapDispatchToProps(AddNewBook);
