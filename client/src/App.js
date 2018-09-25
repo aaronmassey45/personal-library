@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import './App.css';
 
+import AllBooks from './components/AllBooks';
+import { Consumer } from './context';
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Personal Library</h1>
-        </header>
-      </div>
+      <Consumer>
+        {value => (
+          <div className="container">
+            <AllBooks books={value.books} />
+          </div>
+        )}
+      </Consumer>
     );
   }
 }
