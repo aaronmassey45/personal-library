@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class AddNewBook extends Component {
+import withGetBooks from '../HOC/withGetBooks';
+
+class AddNewBook extends Component {
   state = {
     title: '',
   };
@@ -24,7 +26,9 @@ export default class AddNewBook extends Component {
   render() {
     return (
       <div>
-        <h6>Add a new book to your library!</h6>
+        <h6>
+          <b>Add a new book to your library!</b>
+        </h6>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -40,3 +44,5 @@ export default class AddNewBook extends Component {
     );
   }
 }
+
+export default withGetBooks(AddNewBook);
