@@ -8,9 +8,9 @@ class App extends Component {
   render() {
     return (
       <Consumer>
-        {value => (
+        {values => (
           <div className="container">
-            <AllBooks books={value.books} />
+            <AllBooks values={values} />
           </div>
         )}
       </Consumer>
