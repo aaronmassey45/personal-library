@@ -1,6 +1,7 @@
 import React from 'react';
 
 import AddComment from './AddComment';
+import DeleteOneButton from './DeleteOneButton';
 
 export default ({ selectedBook }) => (
   <div className="col s12 m6">
@@ -12,6 +13,7 @@ export default ({ selectedBook }) => (
           <div>
             <span className="card-title">
               <h4>{selectedBook.title}</h4>
+              <DeleteOneButton id={selectedBook._id} />
             </span>
             <div className="divider" />
             <h5>Comments</h5>
