@@ -6,8 +6,14 @@ import Navbar from './components/Navbar';
 import SelectedBook from './components/SelectedBook';
 import Footer from './components/Footer';
 import { Consumer } from './context';
+import { getBooks } from './actions';
+import mapDisptachToProps from './HOC/mapDispatchToProps'
 
 class App extends Component {
+  componentDidMount() {
+    this.props.dispatch(getBooks())
+  }
+
   render() {
     return (
       <Consumer>
@@ -28,4 +34,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default mapDisptachToProps(App);
