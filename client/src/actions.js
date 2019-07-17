@@ -18,28 +18,28 @@ export const getBooks = async () => {
   }
 };
 
-export const addComment = async (dispatch, comment, id) => {
+export const addComment = async (comment, id) => {
   try {
     const res = await axios.post(`/api/books/${id}`, { comment });
-    return dispatch({ type: 'SELECT_BOOK', payload: res.data });
+    return { type: 'SELECT_BOOK', payload: res.data };
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteAllBooks = async dispatch => {
+export const deleteAllBooks = async () => {
   try {
     await axios.delete('/api/books');
-    return dispatch({ type: 'DELETE_ALL_BOOKS' });
+    return { type: 'DELETE_ALL_BOOKS' };
   } catch (error) {
     console.log(error);
   }
 };
 
-export const deleteBook = async (dispatch, id) => {
+export const deleteBook = async (id) => {
   try {
     await axios.delete(`/api/books/${id}`);
-    return dispatch({ type: 'DELETE_BOOK' });
+    return { type: 'DELETE_BOOK' };
   } catch (error) {
     console.log(error);
   }
