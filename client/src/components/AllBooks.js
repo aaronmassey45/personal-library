@@ -17,7 +17,7 @@ const AllBooks = ({ values: { books, dispatch } }) => {
           <li
             key={book._id}
             className="collection-item"
-            onClick={() => selectBook(dispatch, book._id)}
+            onClick={() => dispatch(selectBook(book._id))}
           >
             {book.title}
             <span className="right">{book.commentcount} comments</span>
