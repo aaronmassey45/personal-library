@@ -43,10 +43,6 @@ export class Provider extends Component {
     },
   };
 
-  componentDidMount = () => {
-    getBooks(this.state.dispatch);
-  };
-
   render() {
     return (
       <Context.Provider value={this.state}>
