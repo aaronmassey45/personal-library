@@ -37,7 +37,10 @@ export class Provider extends Component {
   state = {
     books: [],
     selectedBook: null,
-    dispatch: action => this.setState(state => reducer(state, action)),
+    dispatch: async action => {
+      const actionToPass = Promise.resolve(action) === action ? await action : action;
+      return this.setState(state => reducer(state, actionToPass));
+    },
   };
 
   componentDidMount = () => {
