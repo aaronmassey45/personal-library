@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const selectBook = async (dispatch, id) => {
+export const selectBook = async id => {
   try {
     const res = await axios.get(`/api/books/${id}`);
-    return dispatch({ type: 'SELECT_BOOK', payload: res.data });
+    return { type: 'SELECT_BOOK', payload: res.data };
   } catch (error) {
     console.log(error);
   }
