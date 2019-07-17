@@ -9,10 +9,10 @@ export const selectBook = async id => {
   }
 };
 
-export const getBooks = async dispatch => {
+export const getBooks = async () => {
   try {
     const res = await axios.get('/api/books');
-    return dispatch({ type: 'GET_BOOKS', payload: res.data });
+    return { type: 'GET_BOOKS', payload: res.data };
   } catch (error) {
     console.log(error);
   }
