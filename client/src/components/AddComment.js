@@ -16,8 +16,8 @@ class AddComment extends Component {
     e.preventDefault();
     const { id, dispatch } = this.props;
     try {
-      addComment(dispatch, this.state.comment, id);
-      getBooks(dispatch);
+      await addComment(dispatch, this.state.comment, id);
+      await getBooks(dispatch);
       this.setState({ comment: '' });
     } catch (error) {
       console.log(error);
