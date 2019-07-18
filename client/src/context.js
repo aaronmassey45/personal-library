@@ -6,6 +6,11 @@ const Context = React.createContext();
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'ADD_NEW_BOOK':
+      return {
+        ...state,
+        books: [...state.books, {...action.payload, commentcount: 0}],
+      };
     case 'GET_BOOKS':
       return {
         ...state,
