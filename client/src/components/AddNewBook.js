@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 import mapDispatchToProps from '../HOC/mapDispatchToProps';
-import { getBooks } from '../actions';
+import { addNewBook } from '../actions';
 
 class AddNewBook extends Component {
   state = {
@@ -13,15 +12,10 @@ class AddNewBook extends Component {
     this.setState({ title: e.target.value });
   };
 
-  handleSubmit = async e => {
+  handleSubmit = e => {
     e.preventDefault();
-    try {
-      await axios.post('/api/books', { title: this.state.title });
-      getBooks(this.props.dispatch);
-      this.setState({ title: '' });
-    } catch (error) {
-      console.log(error);
-    }
+    this.props.dispatch(addNewBook(this.state.title));
+    this.setState({ title: '' });
   };
 
   render() {
