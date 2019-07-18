@@ -22,12 +22,13 @@ class AddNewBook extends Component {
     return (
       <div>
         <h6>
-          <b>Add a new book to your library!</b>
+          <b>Add to the book shelf!</b>
         </h6>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
             value={this.state.title}
+            placeholder="Enter book title..."
             onChange={this.handleChange}
             name="title"
           />
