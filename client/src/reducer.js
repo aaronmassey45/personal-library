@@ -3,7 +3,10 @@ const reducer = (state, action) => {
     case 'ADD_NEW_BOOK':
       return {
         ...state,
-        books: [...state.books, { ...action.payload, commentcount: 0 }],
+        books: {
+          ...state.books,
+          [action.payload._id]: { ...action.payload, commentcount: 0 },
+        },
       };
     case 'GET_BOOKS':
       return {
@@ -15,16 +18,30 @@ const reducer = (state, action) => {
         ...state,
         selectedBook: action.payload,
       };
+    case 'ADD_COMMENT':
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [action.payload._id]: {
+            ...state.books[action.payload._id],
+            commentcount: action.payload.comments.length,
+          },
+        },
+        selectedBook: action.payload,
+      };
     case 'DELETE_ALL_BOOKS':
       return {
         ...state,
-        books: [],
+        books: {},
         selectedBook: null,
       };
     case 'DELETE_BOOK':
+      const { [action.payload]: omittedProp, ...valuesToKeep } = state.books;
+
       return {
         ...state,
-        books: [...state.books.filter(book => book._id !== action.payload)],
+        books: { ...valuesToKeep },
         selectedBook: null,
       };
     default:
