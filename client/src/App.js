@@ -7,11 +7,11 @@ import SelectedBook from './components/SelectedBook';
 import Footer from './components/Footer';
 import { Consumer } from './context';
 import { getBooks } from './actions';
-import mapDisptachToProps from './HOC/mapDispatchToProps'
+import mapDisptachToProps from './HOC/mapDispatchToProps';
 
 class App extends Component {
   componentDidMount() {
-    this.props.dispatch(getBooks())
+    this.props.dispatch(getBooks());
   }
 
   render() {
