@@ -22,7 +22,7 @@ class App extends Component {
             <main>
               <Navbar />
               <div className="container row">
-                <AllBooks values={values} />
+                <AllBooks books={values.books} />
                 <SelectedBook selectedBook={values.selectedBook} />
               </div>
             </main>
