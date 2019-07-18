@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { getBooks, addComment } from '../actions';
+import { addComment } from '../actions';
 import mapDispatchToProps from '../HOC/mapDispatchToProps';
 
 class AddComment extends Component {
@@ -15,13 +15,8 @@ class AddComment extends Component {
   handleSubmit = async e => {
     e.preventDefault();
     const { id, dispatch } = this.props;
-    try {
-      await dispatch(addComment(this.state.comment, id));
-      await dispatch(getBooks());
-      this.setState({ comment: '' });
-    } catch (error) {
-      console.log(error);
-    }
+    dispatch(addComment(this.state.comment, id));
+    this.setState({ comment: '' });
   };
 
   render() {
