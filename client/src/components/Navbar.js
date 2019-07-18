@@ -1,13 +1,11 @@
 import React from 'react';
 
-export default () => {
-  return (
-    <nav className="nav-extended amber lighten-1">
-      <div className="nav-wrapper ">
-        <span className="brand-logo grey-text text-darken-4">
-          Personal Library
-        </span>
-      </div>
-    </nav>
-  );
-};
+const Navbar = () => (
+  <nav className="nav-extended brown darken-3">
+    <div className="nav-wrapper container">
+      <span className="brand-logo white-text">Personal Library</span>
+    </div>
+  </nav>
+);
+
+export default Navbar;
