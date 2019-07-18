@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { PureComponent, Fragment } from 'react';
 import './App.css';
 
 import AllBooks from './components/AllBooks';
@@ -9,27 +9,27 @@ import { Consumer } from './context';
 import { getBooks } from './actions';
 import mapDisptachToProps from './HOC/mapDispatchToProps';
 
-class App extends Component {
+class App extends PureComponent {
   componentDidMount() {
     this.props.dispatch(getBooks());
   }
 
   render() {
     return (
-      <Consumer>
-        {values => (
-          <Fragment>
+      <Fragment>
+        <Navbar />
+        <Consumer>
+          {values => (
             <main>
-              <Navbar />
               <div className="container row">
                 <AllBooks books={values.books} />
                 <SelectedBook selectedBook={values.selectedBook} />
               </div>
             </main>
-            <Footer />
-          </Fragment>
-        )}
-      </Consumer>
+          )}
+        </Consumer>
+        <Footer />
+      </Fragment>
     );
   }
 }
