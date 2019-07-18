@@ -29,6 +29,7 @@ class AddComment extends Component {
             placeholder="Add a comment..."
             type="text"
             value={this.state.comment}
+            className="white-text"
           />
           <button type="submit" className="btn waves-effect waves-light">
             Add Comment
