@@ -13,7 +13,7 @@ const AllBooks = ({ values: { books, dispatch } }) => {
           <DeleteAllButton />
           <AddNewBook />
         </li>
-        {books.map(book => (
+        {Object.values(books).map(book => (
           <li
             key={book._id}
             className="collection-item"
