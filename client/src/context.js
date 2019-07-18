@@ -6,7 +6,7 @@ const Context = React.createContext();
 
 export class Provider extends Component {
   state = {
-    books: [],
+    books: {},
     selectedBook: null,
     dispatch: async action => {
       const actionToPass =
