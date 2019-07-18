@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import arrayToObject from './utils/arrayToObject';
+
 export const selectBook = async id => {
   try {
     const res = await axios.get(`/api/books/${id}`);
@@ -17,7 +19,8 @@ export const addNewBook = async title => {
 export const getBooks = async () => {
   try {
     const res = await axios.get('/api/books');
-    return { type: 'GET_BOOKS', payload: res.data };
+    const payload = arrayToObject(res.data, '_id');
+    return { type: 'GET_BOOKS', payload };
   } catch (error) {
     console.log(error);
   }
@@ -26,7 +29,7 @@ export const getBooks = async () => {
 export const addComment = async (comment, id) => {
   try {
     const res = await axios.post(`/api/books/${id}`, { comment });
-    return { type: 'SELECT_BOOK', payload: res.data };
+    return { type: 'ADD_COMMENT', payload: res.data };
   } catch (error) {
     console.log(error);
   }
