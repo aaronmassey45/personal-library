@@ -44,7 +44,7 @@ export const deleteAllBooks = async () => {
 export const deleteBook = async id => {
   try {
     await axios.delete(`/api/books/${id}`);
-    return { type: 'DELETE_BOOK' };
+    return { type: 'DELETE_BOOK', payload: id };
   } catch (error) {
     console.log(error);
   }
