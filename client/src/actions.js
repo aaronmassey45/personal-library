@@ -9,6 +9,11 @@ export const selectBook = async id => {
   }
 };
 
+export const addNewBook = async title => {
+  const res = await axios.post('/api/books', { title });
+  return { type: 'ADD_NEW_BOOK', payload: res.data };
+};
+
 export const getBooks = async () => {
   try {
     const res = await axios.get('/api/books');
@@ -36,7 +41,7 @@ export const deleteAllBooks = async () => {
   }
 };
 
-export const deleteBook = async (id) => {
+export const deleteBook = async id => {
   try {
     await axios.delete(`/api/books/${id}`);
     return { type: 'DELETE_BOOK' };
